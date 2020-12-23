@@ -26,9 +26,14 @@ import tqdm
 from skorch import NeuralNetClassifier
 import utils
 
-import models
-from models import DiffPool,MinCutPool,Graclus
-#from models import BaselineModel, TopKModel, SAGPoolModel, DiffPoolModel
+import model_dense
+from model_dense import DiffPool,MinCutPool,Graclus
+ 
+'''
+    Testing DiffPool and mincutPool.
+'''
+
+
 
 class TestScoring:
     def __init__(self, test_dataset):
@@ -164,7 +169,7 @@ if __name__ == '__main__':
             max_epochs=args.max_epochs,
             batch_size=args.batch_size,
             lr=args.lr,
-            criterion=models.PoolLoss if args.model == 'DiffPool' or 'MinCutPool' else NLLLoss,
+            criterion=model_dense.PoolLoss if args.model == 'DiffPool' or 'MinCutPool' else NLLLoss,
             optimizer=Adam,
             optimizer__weight_decay=args.weight_decay,
             iterator_train__shuffle=True,
