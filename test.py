@@ -27,7 +27,7 @@ from skorch import NeuralNetClassifier
 import utils
 
 import model
-from model import BaselineModel, TopKModel, SAGPoolModel, DiffPoolModel, Graclus
+from model import BaselineModel,MotifPoolModel, TopKModel, SAGPoolModel, DiffPoolModel, Graclus
 
 class TestScoring:
     def __init__(self, test_dataset):
@@ -42,7 +42,7 @@ class TestScoring:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-m', '--model', type=str, default='DiffPool',
+    parser.add_argument('-m', '--model', type=str, default='MotifPool',
                         help='Select pooling model for validation.')
     parser.add_argument('-d', '--dataset', type=str, default='MUTAG',
                         help="Dataset used for validation from TUDataset.")
@@ -74,8 +74,8 @@ if __name__ == '__main__':
                         help='Number for n-folds validation.')
     parser.add_argument('--GPUIdx',type=int, default=None,
                         help='which GPU should run the code')
-    parser.add_argument("--motifList", default=None,
-                        type=str, help="motif list,default:'K6,K5,K4,K3,K2'")
+    parser.add_argument("--motifList", default='C6,S4,S3,K3,K2',
+                        type=str, help="motif list,default:'C6,S4,S3,K3,K2'")
 
     args = parser.parse_args()
 

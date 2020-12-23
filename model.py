@@ -188,8 +188,9 @@ class BaselineModel(torch.nn.Module):
 
     def collate(self, index):
         #print(self.dataset)
+        d=self.dataset[list(index.view(-1))]
 
-        return Batch.from_data_list(self.dataset[list(index.view(-1))]).to(self.device)
+        return d.to(self.device)
 
     def global_pool(self, data):
         if self.dense:
